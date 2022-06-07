@@ -7,7 +7,7 @@ The Library
 This is a web based application that enables a librarian upload new books to the application and also delete the desired books from the application.It also enables the user(Student)to search for a desired book title and if the book is available, the student can borrow the book. 
 
 ## Installation and access
-the application is to be a cross platform kind and can be accessed via the web  
+The application is to be a cross platform kind and can be accessed via the web  
 
 
 ## Functions
