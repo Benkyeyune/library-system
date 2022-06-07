@@ -12,7 +12,7 @@ The application requires the user to register/sign up on the application as eith
 
 
 ## Technologies used
-we are using python3 language as the programming language,The Django framework for web development,git for source code management,sqlite3 for the database management and also gitlab accounts to manage the project and to enable easy contributions among the team of developers.HTML will also be used to publish online documents with headings, text, tables, lists, photos, etc. and also retrieve online information via hypertext links, at the click of a button.
+we are using python3 language as the programming language,The Django framework for web development,git for source code management,sqlite3 for the database management and also gitlab accounts to manage the project and to enable easy contributions among the team of developers.HTML will also be used to publish online documents with headings, text, tables, lists, photos, etc. and also retrieve online information via hypertext links, at the click of a button and also Extreme Programming (XP) will be used  to produce higher quality software, and higher quality of life for the team.
 
 
 ## Authors 
