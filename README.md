@@ -4,10 +4,7 @@
 The Library
 
 ## Description
-This is a web based application that enables a librarian upload new books to the application and also delete the desired books from the application.It also enables the user(Student)to search for a desired book title and if the book is available, the student can borrow the book. 
-
-## Installation and access
-The application is to be a cross platform kind and can be accessed via the web  
+This is a web based application that enables a librarian upload new books to the application and also delete the desired books from the application.It also enables the user(Student)to search for a desired book title and if the book is available, the student can borrow the book.  
 
 
 ## Functions
@@ -15,7 +12,8 @@ The application requires the user to register/sign up on the application as eith
 
 
 ## Technologies used
-we are using python3 language as the programming language,The Django framework for web development,git for source code management,sqlite3 for the database management and also gitlab accounts to manage the project and to enable easy contributions among the team of developers.
+we are using python3 language as the programming language,The Django framework for web development,git for source code management,sqlite3 for the database management and also gitlab accounts to manage the project and to enable easy contributions among the team of developers.HTML will also be used to publish online documents with headings, text, tables, lists, photos, etc. and also retrieve online information via hypertext links, at the click of a button.
+
 
 ## Authors 
 The application is being developed by Ben Kyeyune,Kweya Anthony,Naluvubi Proscovia and Yokoyasi Gerald.
