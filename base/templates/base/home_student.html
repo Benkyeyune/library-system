@@ -1,0 +1,23 @@
+{% extends 'main_students.html' %}
+
+{% block content %}
+<a href="{%url 'My_payments'%}">Payments</a>
+<a href="{%url 'My_books'%}">My Books</a>
+<h1>Home page</h1>
+<div>
+    <div>
+    
+                    
+        {{ book_list }}
+        {%for book in book_list%}
+            {{ book }}
+        {% endfor %}    
+    
+
+
+ 
+    </div>
+
+</div>
+
+{% endblock content %}
