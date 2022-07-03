@@ -7,13 +7,21 @@
 <div>
     <div>
     
-                    
-        {{ book_list }}
-        {%for book in book_list%}
-            {{ book }}
-        {% endfor %}    
-    
+        <form class="d-flex" method="POST" action="{% url 'search_books' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search books" aria-label="Search" name="searched">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form> 
 
+        <h1 class='list'>Catalog</h1>
+       <div>
+            {% for book in books %}
+                <div>
+                    <h5>{{book.id}} -- <a href="{% url 'book' book.id %}">{{book.title}}</h5></a>
+                </div>
+
+            {% endfor %}
+       </div>
 
  
     </div>

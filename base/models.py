@@ -18,7 +18,6 @@ class User(AbstractUser):
 
 
 
-
 #adding a table for books in the database
 class My_book(models.Model):
     title = models.CharField(max_length=200)
@@ -53,11 +52,24 @@ class Librarian(models.Model):
     Id=models.AutoField
     Staff_Id_no = models.CharField(max_length=200)
 
-#class Borrowed_book(My_book):
-    #My_book.__init__
+'''class Borrowed_book(My_book):
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    book_id= models.AutoField
+    ISBN= models.CharField(null=True, blank= True,max_length=200)
+    Author= models.CharField(max_length=200)
+    date_borrowed=models.DateTimeField(auto_now_add=True)
+    return_date=models.DateTimeField(date_borrowed+=1 )
+    book_cover=models.ImageField(upload_to='base/files/covers/',null=True,blank=True)
+    
+    def __str__(self):
+        return self.title
+'''        
+
+    
 
 #class Requested_book(My_book):
-    #
+    
 
 
 

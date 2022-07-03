@@ -12,4 +12,6 @@ urlpatterns = [
     path('Home_student/',views.Home_student,name="Home_student"),
     path('payments_student/',views.payments_student,name='My_payments'),
     path('My_books/', views.my_book, name="My_books"),
+    path('search_books/', views.search_books, name="search_books"),
+    path('book/<str:pk>/', views.book, name="book"),
 ]
