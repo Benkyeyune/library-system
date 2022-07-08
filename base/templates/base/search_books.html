@@ -13,7 +13,8 @@
                 </h1>
                 <br/>
                 {% for book in books%}
-                    <a href="{%url 'book' book.id %}">{{book}}</a> 
+                    <a href="{%url 'book_student' book.id %}">{{book}}</a>
+                    <button>borrow</button>
                     <br/>
                 {% endfor %}
             {% else %}

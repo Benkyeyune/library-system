@@ -1,4 +1,6 @@
+from asyncio.windows_events import NULL
 from operator import truth
+from tkinter import CASCADE
 from turtle import title
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -22,7 +24,6 @@ class User(AbstractUser):
 class My_book(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    book_id= models.AutoField
     ISBN= models.CharField(null=True, blank= True,max_length=200)
     Author= models.CharField(max_length=200)
     Date_added=models.DateTimeField(auto_now_add=True)
@@ -41,34 +42,22 @@ class My_book(models.Model):
 #Adding a table for students in the database
 class Student(models.Model):
     name =models.CharField(max_length=200)
-    Id=models.AutoField
     Student_no = models.CharField(max_length=200)
     Reg_no = models.CharField(max_length=200)
 
 #Table for the librarian
-
 class Librarian(models.Model):
     name =models.CharField(max_length=200)
-    Id=models.AutoField
     Staff_Id_no = models.CharField(max_length=200)
 
-'''class Borrowed_book(My_book):
-    title = models.CharField(max_length=200)
-    description = models.TextField(null=True, blank=True)
-    book_id= models.AutoField
-    ISBN= models.CharField(null=True, blank= True,max_length=200)
-    Author= models.CharField(max_length=200)
+class Borrowed_book(models.Model):
+    book = models.ForeignKey(My_book,on_delete=models.CASCADE)
     date_borrowed=models.DateTimeField(auto_now_add=True)
-    return_date=models.DateTimeField(date_borrowed+=1 )
-    book_cover=models.ImageField(upload_to='base/files/covers/',null=True,blank=True)
-    
-    def __str__(self):
-        return self.title
-'''        
-
-    
-
-#class Requested_book(My_book):
+    return_date=models.DateTimeField(date_borrowed)
+    date_returned=models.DateTimeField()
+class Requested_book(models.Model):
+    book= models.ForeignKey(My_book,on_delete=models.CASCADE)
+    taken=models.BooleanField(default=False)
     
 
 
