@@ -11,7 +11,8 @@ urlpatterns = [
     path('update_book/<id>',views.update_book,name='update_book'),
     path('delete_event/<id>',views.delete_book,name='delete_book'),
     path('search_books_librarian/', views.search_books_librarian, name="search_books_librarian"),
-    path('book_librarian/<str:pk>/', views.book_librarian, name="book_librarian"), 
+    path('book_librarian/<str:pk>/', views.book_librarian, name="book_librarian"),
+    path('book_report', views.book_report, name="book_report"), 
    #student urls
     path('Home_student/',views.Home_student,name="Home_student"),
     path('payments_student/',views.payments_student,name='My_payments'),

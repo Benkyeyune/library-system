@@ -28,7 +28,7 @@ class My_book(models.Model):
     Author= models.CharField(max_length=200)
     Date_added=models.DateTimeField(auto_now_add=True)
     date_updated=models.DateTimeField(auto_now=True)
-    book_cover=models.ImageField(upload_to='base/files/covers/',null=True,blank=True)
+    book_cover=models.ImageField(upload_to='images/',null=True,blank=True)
     added_by=models.CharField(max_length=100,null=True,blank=True)
     subject=models.CharField(max_length=100,null=True)
     def __str__(self):

@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>{{book.title}}</h1>
-{{book.book_cover}}
+<img src="{{ book.book_cover.url }}" alt="book_cover" style="width:100px; height: 100px">
 {{book.description}}
 {{book.Author}}
 

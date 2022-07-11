@@ -7,7 +7,7 @@
 <a href="{%url 'borrowed_books'%}">borrowed books</a>
 <a href="{%url 'requested_books'%}">requested books</a>
 <a href="/users/logout_user/">logout</a>
-
+<a href="{%url 'book_report'%}">report</a>
 <div>
     <div>
     
@@ -20,16 +20,32 @@
     
         <h1 class='list'>Catalog</h1>
         <div>
-            {% for book in My_books %}
+            {% for book in books_list %}
                 <div>
                     <h5>{{book.id}} -- <a href="{% url 'book_librarian' book.id %}">{{book.title}}</h5></a>
+                    {% if book.book_cover %}
+                    <img src="{{ book.book_cover.url }}" alt="book_cover" style="width:100px; height: 100px">
+                    {% endif %}
                     <a href="{% url 'update_book' book.id %}">Update_book</a>
                     <a href="{% url 'delete_book' book.id %}">Delete_book</a>
                 </div>
     
             {% endfor %}
         </div>    
-    
+        {% if books_list.has_previous %}
+        <a href="?page=1">&laquo First</a>
+        <a href="?page={{ books_list.previous_page_number }}">Previous</a>
+
+   {% endif %}    
+   
+   Page {{ books_list.number }} of {{ books_list.paginator.num_pages }}
+
+   {% if books_list.has_next %}
+   <a href="?page={{ books_list.next_page_number }}">Next</a>
+   <a href="?page={{ books_list.paginator.num_pages }}">&raquo Last</a>
+
+   {% endif %} 
+</div>
 
 
  

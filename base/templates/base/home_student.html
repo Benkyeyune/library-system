@@ -15,17 +15,41 @@
 
         <h1 class='list'>Catalog</h1>
        <div>
-            {% for book in books %}
+            {% for book in books_list %}
                 <div>
                     <h5>{{book.id}} -- <a href="{% url 'book_student' book.id %}">{{book.title}}</h5></a>
-                    <img src="{{ book.book_cover }}" alt="book_cover" style="width:100px; height: 100px">
+                    {% if book.book_cover %}
+                    <img src="{{ book.book_cover.url }}" alt="book_cover" style="width:100px; height: 100px">
+                    {% endif %}
                     <button>borrow</button>
                 </div>
 
             {% endfor %}
        </div>
+    <br/><!--
+       {{ books_list }}
+       <br/>
+       Has Previous: {{ books_list.has_previous }}
+       <br/>
+       Has Next: {{ books_list.has_next }}
+       <br/>
+       Current Page: {{ books_list.number }}
+       <br/>
+       Number of pages: {{ books_list.paginator.num_pages }}
+       <br/><br/><br/>-->
+       {% if books_list.has_previous %}
+            <a href="?page=1">&laquo First</a>
+            <a href="?page={{ books_list.previous_page_number }}">Previous</a>
 
- 
+       {% endif %}    
+       
+       Page {{ books_list.number }} of {{ books_list.paginator.num_pages }}
+
+       {% if books_list.has_next %}
+       <a href="?page={{ books_list.next_page_number }}">Next</a>
+       <a href="?page={{ books_list.paginator.num_pages }}">&raquo Last</a>
+
+       {% endif %} 
     </div>
 
 </div>
