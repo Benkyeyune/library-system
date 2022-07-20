@@ -9,13 +9,13 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 # Create your models here.
-class User(AbstractUser):
+'''class User(AbstractUser):
     is_admin=models.BooleanField(default=False)
     is_librarian=models.BooleanField(default=False)
     is_student=models.BooleanField(default=False)
 
     class Meta:
-        swappable='AUTH_USER_MODEL'
+        swappable='AUTH_USER_MODEL' '''
 
 
 
@@ -51,11 +51,13 @@ class Librarian(models.Model):
     Staff_Id_no = models.CharField(max_length=200)
 
 class Borrowed_book(models.Model):
+    user=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     book = models.ForeignKey(My_book,on_delete=models.CASCADE)
     date_borrowed=models.DateTimeField(auto_now_add=True)
     return_date=models.DateTimeField(date_borrowed)
     date_returned=models.DateTimeField()
 class Requested_book(models.Model):
+    user=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     book= models.ForeignKey(My_book,on_delete=models.CASCADE)
     taken=models.BooleanField(default=False)
     

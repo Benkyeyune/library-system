@@ -1,25 +1,42 @@
 {% extends 'main.html'%}
-
+{% load static %}
 {% block content%}
-
-<div>
-    <center>
-        <h1>login</h1>
-    <br/><br/>
-    
-
-        <form action="" method="POST">
-        {% csrf_token %} 
-        <label >Username</label>
-        <input type="text" name="username">
-        <label >Password</label>
-        <input type="password" name="password">
-        <button type="submit ">Login</button>
+ <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Document</title>
+    </head>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <body>
+      <div class="wrapper">
+        <div class="logo">
+            <img src="{% static './images/log.png' %}">
+        </div>
+        <div class="text-center mt-4 name">
+            Campus Library
+        </div>
+        <form class="p-3 mt-3" action="" method="POST">
+                {% csrf_token %}
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password"  placeholder="Password">
+            </div>
+            <button class="btn mt-3">Login</button>
         </form>
-   
-
-    </center>
-
+        
+    
+    </div>
+        {% for message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %}
+    </body>
+    </html>
+    
+    
 
 </div>
 

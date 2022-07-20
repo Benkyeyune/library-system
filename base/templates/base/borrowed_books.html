@@ -2,5 +2,21 @@
 
 {% block content %}
 <h1>Borrowed books</h1>
+<div>
+    {% if Books %}
+        {% for book in Books %}
+            <div>
+                {{ book.My_book.book_cover.url }}
+                {{ book.My_book.title }}
+                {{ book.My_book.id }}
+                {{ book.date_borrowed }}
+                {{ book.return_date }}
+            </div>
+        {% endfor %}
+    {% else %} 
+    <h5>No books borrowed yet</h5>
+    {% endif %}            
+    
+</div>
 
 {% endblock content %}

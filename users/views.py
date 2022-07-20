@@ -19,7 +19,7 @@ def login_user(request):
         else:
             #return an 'invalid login' error
             messages.success(request,("There was an error Logging in, Try again...."))
-            return redirect('/users/login_user')    
+            return redirect('login')    
 
     else:
         return render(request, 'authenticate/login.html',{})
@@ -27,7 +27,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)  
     messages.success(request,("You were logged out successfully...."))
-    return redirect('/users/login_user')      
+    return redirect('welcome')      
 
 def register_user(request):
     if request.method == "POST":
@@ -37,7 +37,7 @@ def register_user(request):
             username=form.cleaned_data['username']
             password=form.cleaned_data['password1']
             messages.success(request,("Account created successfully...."))
-            return redirect('/users/login_user') 
+            return redirect('welcome') 
     else:
         form=UserCreationForm
     return render(request, 'authenticate/register_user.html',{'form':form})

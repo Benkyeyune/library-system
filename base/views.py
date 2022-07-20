@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import redirect, render
-from base.models import My_book
+from base.models import My_book,Borrowed_book
 from .forms import bookform
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -64,22 +64,14 @@ def Home_student(request):
     return render(request,'base/home_student.html',context)
 
 def borrwed_books(request):
-    My_books=My_book.objects.all()
-    context={'My_books':My_books}
+    Books=Borrowed_book.objects.filter()
+    context={'Books':Books}
     return render(request,'base/borrowed_books.html',context)
 
 def requested_books(request):
     My_books=My_book.objects.all()
     context={'My_books':My_books}
     return render(request,'base/requested_books.html',context)
-
-def all_books(request):
-    book_list=My_book.objects.all()
-    return render(request,'base/home_student.html',{'book_list': book_list})
-
-def book_list(request):
-    book_list=My_book.objects.all()
-    return render(request,'base/home.html',{'book_list': book_list})    
 
 def search_books(request):
     if request.method == 'POST':
@@ -143,7 +135,7 @@ def book_report(request):
     #designate model
     books=My_book.objects.all()
     #blank list
-    lines=[]
+    lines=['Books added to the Library']
     for book in books:
         lines.append(book.title)
         lines.append(book.description)

@@ -1,13 +1,5 @@
-
 {% extends 'main_librarian.html' %}
-
 {% block content %}
-<h1>Home page</h1>
-<a href="{%url 'add_book'%}">add book</a>
-<a href="{%url 'borrowed_books'%}">borrowed books</a>
-<a href="{%url 'requested_books'%}">requested books</a>
-<a href="/users/logout_user/">logout</a>
-<a href="{%url 'book_report'%}">report</a>
 <div>
     <div>
     
@@ -15,19 +7,22 @@
         <form class="d-flex" method="POST" action="{% url 'search_books_librarian' %}">
             {% csrf_token %}
             <input class="form-control me-2" type="search" placeholder="Search books" aria-label="Search" name="searched">
-             <button class="btn btn-outline-secondary" type="submit">Search</button>
+             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form> 
     
         <h1 class='list'>Catalog</h1>
         <div>
             {% for book in books_list %}
-                <div>
+                <div class="card" style="width: 18rem;">
                     <h5>{{book.id}} -- <a href="{% url 'book_librarian' book.id %}">{{book.title}}</h5></a>
                     {% if book.book_cover %}
                     <img src="{{ book.book_cover.url }}" alt="book_cover" style="width:100px; height: 100px">
                     {% endif %}
-                    <a href="{% url 'update_book' book.id %}">Update_book</a>
-                    <a href="{% url 'delete_book' book.id %}">Delete_book</a>
+                    {% if book.description %}
+                    <h5>Description:{{ book.description }}</h5>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'update_book' book.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'delete_book' book.id %}" role="button">Delete</a>
                 </div>
     
             {% endfor %}
