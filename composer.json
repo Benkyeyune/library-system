@@ -3,7 +3,7 @@
     "root": "books",
     "clean_urls": true,
     "https_only": true,
-    "home_page": "home.html",
+    "home_page": "https://gitlab.com/benkyeyune10/library-system1/-/blob/main/books/templates/home.html",
     "headers": {
         "/**": {
         "Access-Control-Allow-Origin": "*"
