@@ -18,7 +18,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-def signup(request):
+def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -31,9 +31,9 @@ def signup(request):
                 return redirect('books:home')
         else:
             messages.info(request, "Invalid username or password")
-            return redirect('books:signup')
+            return redirect('books:login')
     else:
-        return render(request, 'signup.html')
+        return render(request, 'login.html')
 
 
 def register(request):

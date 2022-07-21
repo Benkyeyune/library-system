@@ -13,8 +13,8 @@
      <nav>
      <ul>
          <li><a class="active" href="{% url 'books:home' %}">about</a></li>
-         <li><a href="home">index</a></li>
-         <li><a href="home">details</a></li>
+         <li><a href="{% url 'books:login' %}">login</a></li>
+         <li><a href="{% url 'books:index' %}">index</a></li>
          <li class="logo" style="float: left;" ><a href="home"></a><img src="./images/photos/log.png" alt="logo" width="40px" height="40px"></li>
      </ul>
      </nav>
