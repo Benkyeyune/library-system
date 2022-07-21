@@ -1,1 +1,13 @@
-{}
+{
+
+    "root": "books",
+    "clean_urls": true,
+    "https_only": true,
+    "home_page": "home.html",
+    "headers": {
+        "/**": {
+        "Access-Control-Allow-Origin": "*"
+        }
+        }
+    
+}
