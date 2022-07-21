@@ -28,7 +28,7 @@ def login(request):
             if user.is_superuser:
                 return redirect('books:home')
             else:
-                return redirect('books:home')
+                return redirect('books:index')
         else:
             messages.info(request, "Invalid username or password")
             return redirect('books:login')
