@@ -1,8 +1,6 @@
 {% extends 'main_students.html' %}
 
 {% block content %}
-<a href="{%url 'My_payments'%}">Payments</a>
-<a href="{%url 'My_books'%}">My Books</a>
 
 <div>
     <div>
@@ -13,8 +11,8 @@
                 </h1>
                 <br/>
                 {% for book in books%}
-                    <a href="{%url 'book_student' book.id %}">{{book}}</a>
-                    <button>borrow</button>
+                    <a href="{%url 'books:book_student' book.id %}">{{book}}</a>
+                    <button class="btn btn-primary">borrow</button>
                     <br/>
                 {% endfor %}
             {% else %}

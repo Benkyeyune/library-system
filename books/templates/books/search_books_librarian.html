@@ -1,9 +1,6 @@
 {% extends 'main_librarian.html' %}
 
 {% block content %}
-<a href="{%url 'add_book'%}">add book</a>
-<a href="{%url 'borrowed_books'%}">borrowed books</a>
-<a href="{%url 'requested_books'%}">requested books</a>
 
 <div>
     <div>
@@ -14,9 +11,9 @@
                 </h1>
                 <br/>
                 {% for book in books%}
-                    <a href="{%url 'book_librarian' book.id %}">{{book}}</a>
-                    <a href="{% url 'update_book' book.id %}">Update_book</a>
-                    <a href="{% url 'delete_book' book.id %}">Delete_book</a>
+                    <a href="{%url 'books:book_librarian' book.id %}">{{book}}</a>
+                    <a class="btn btn-primary" href="{% url 'books:update_book' book.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'books:delete_book' book.id %}" role="button">Delete</a>
                     <br/>
                 {% endfor %}
             {% else %}
@@ -27,7 +24,7 @@
         </centre>
                     
         
-</div>
+    </div>
 
 </div>
 
