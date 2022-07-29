@@ -7,7 +7,10 @@
         <centre>
             {% if searched %}
                 <h1>
-                You searched for {{ searched }}
+                    <div class="alert alert-primary" role="alert">
+                        You searched for {{ searched }}
+                    </div>
+                
                 </h1>
                 <br/>
                 {% for book in books%}
@@ -18,7 +21,10 @@
                 {% endfor %}
             {% else %}
                 <h1>
-                    Hey you forgot to search for a book..
+                    <div class="alert alert-primary" role="alert">
+                        Hey you forgot to search for a book..
+                    </div>
+                    
                 </h1>
             {% endif %}
         </centre>

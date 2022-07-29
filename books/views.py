@@ -78,9 +78,9 @@ def payments_student(request):
     return render(request,'books/payments_student.html')
 
 def Home_student(request):
-    books=Book.objects.all().order_by('?')
+    books=Book.objects.all().order_by('Date_added')
     #Setup pagination
-    p=Paginator(Book.objects.all(),2)
+    p=Paginator(Book.objects.all(),5)
     page=request.GET.get('page')
     books_list=p.get_page(page)
     context={'books':books,
@@ -106,7 +106,7 @@ def book_student(request, pk):
 def Home(request):
     books=Book.objects.all().order_by('Date_added')
      #Setup pagination
-    p=Paginator(Book.objects.all(),2)
+    p=Paginator(Book.objects.all(),5)
     page=request.GET.get('page')
     books_list=p.get_page(page)
     context={'books':books,
