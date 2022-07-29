@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Books
+from .models import Book,Borrowed_book
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('book_title','author','edition','publication_date','subject_area')
+    list_display = ('book_title','author','edition','Date_added','subject_area')
+    ordering=('book_title',)
+    search_fields=('book_title','id')
 
-
-admin.site.register(Books,BookAdmin)
+admin.site.register(Book,BookAdmin)
+admin.site.register(Borrowed_book)

@@ -1,0 +1,34 @@
+{% extends 'main_librarian.html' %}
+
+{% block content %}
+<a href="{%url 'add_book'%}">add book</a>
+<a href="{%url 'borrowed_books'%}">borrowed books</a>
+<a href="{%url 'requested_books'%}">requested books</a>
+
+<div>
+    <div>
+        <centre>
+            {% if searched %}
+                <h1>
+                You searched for {{ searched }}
+                </h1>
+                <br/>
+                {% for book in books%}
+                    <a href="{%url 'book_librarian' book.id %}">{{book}}</a>
+                    <a href="{% url 'update_book' book.id %}">Update_book</a>
+                    <a href="{% url 'delete_book' book.id %}">Delete_book</a>
+                    <br/>
+                {% endfor %}
+            {% else %}
+                <h1>
+                    Hey you forgot to search for a book..
+                </h1>
+            {% endif %}
+        </centre>
+                    
+        
+</div>
+
+</div>
+
+{% endblock content %}

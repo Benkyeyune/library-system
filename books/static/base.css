@@ -34,7 +34,7 @@ li a:hover {
     background-color: #111;
   }
 .active{
-    background-color: darkcyan;
+    background-color: white;
 }
 ul {
     position: fixed;
@@ -42,5 +42,5 @@ ul {
     width: 100%;
   }
 body{
-    background: lightgreen;
+    background: white;
 }

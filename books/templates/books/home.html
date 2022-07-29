@@ -1,0 +1,54 @@
+
+{% extends 'main_librarian.html' %}
+
+{% block content %}
+<div>
+    <div>
+    
+        
+        <form class="d-flex" method="POST" action="{% url 'books:search_books_librarian' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search books" aria-label="Search" name="searched">
+             <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form> 
+    
+        <h1 class='list'>Catalog</h1>
+        <div class="row">
+            {% for book in books_list %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <h5>{{book.id}} -- <a href="{% url 'books:book_librarian' book.id %}">{{book.book_title}}</h5></a>
+                    {% if book.book_cover %}
+                    <img src="{{ book.book_cover.url }}" alt="book_cover" style="width:100px; height: 100px">
+                    {% endif %}
+                    {% if book.description %}
+                    <h5>Description:{{ book.description }}</h5>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'books:update_book' book.id %}" role="button">Update</a>
+                    <a class="btn btn-danger" href="{% url 'books:delete_book' book.id %}" role="button">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>    
+        {% if books_list.has_previous %}
+        <a href="?page=1">&laquo First</a>
+        <a href="?page={{ books_list.previous_page_number }}">Previous</a>
+
+   {% endif %}    
+   
+   Page {{ books_list.number }} of {{ books_list.paginator.num_pages }}
+
+   {% if books_list.has_next %}
+   <a href="?page={{ books_list.next_page_number }}">Next</a>
+   <a href="?page={{ books_list.paginator.num_pages }}">&raquo Last</a>
+
+   {% endif %} 
+</div>
+
+
+ 
+    </div>
+
+</div>
+
+{% endblock content %}

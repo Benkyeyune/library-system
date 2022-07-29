@@ -1,0 +1,25 @@
+{% extends 'main_librarian.html'%}
+
+{% block content%}
+
+<div>
+    <center>
+        <h1>Update book</h1>
+    <br/><br/>
+    {%if submitted %}
+    Book was updated succesfully!!!
+
+    {% else %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{ form.as_p}} 
+        <button type="submit ">Update</button>
+    </form>
+
+    {% endif %}
+    </center>
+
+
+</div>
+
+{%  endblock content  %}

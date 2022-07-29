@@ -14,10 +14,13 @@
     {% for book in books %}
     <div class="col">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{ book.image_url.url }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ book.book_cover.url }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ book.book_title }}</h5>
                 <p class="card-text">{{ book.author }} {{ book.edition }} {{ book.publication_date }} {{ book.subject_area }}</p>
+                {% if book.description %}
+                    <h5>Description:{{ book.description }}</h5>
+                {% endif %}
                 <a href="#" class="btn btn-primary">BORROW BOOK</a>
             </div>
         </div>

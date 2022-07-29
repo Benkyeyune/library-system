@@ -1,0 +1,60 @@
+{% extends 'main_students.html' %}
+
+{% block content %}
+<h1>Home page</h1>
+<div>
+    <div>
+    
+        <form class="d-flex" method="POST" action="{% url 'books:search_books' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Search books" aria-label="Search" name="searched">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form> 
+
+        <h1>Catalog</h1>
+       <div class="row">
+        {% for book in books %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ book.book_cover.url }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.book_title }}</h5>
+                    <p class="card-text">{{ book.author }} {{ book.edition }} {{ book.publication_date }} {{ book.subject_area }}</p>
+                    {% if book.description %}
+                        <h5>Description:{{ book.description }}</h5>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary">BORROW BOOK</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+       </div>
+    <br/><!--
+       {{ books_list }}
+       <br/>
+       Has Previous: {{ books_list.has_previous }}
+       <br/>
+       Has Next: {{ books_list.has_next }}
+       <br/>
+       Current Page: {{ books_list.number }}
+       <br/>
+       Number of pages: {{ books_list.paginator.num_pages }}
+       <br/><br/><br/>-->
+       {% if books_list.has_previous %}
+            <a href="?page=1">&laquo First</a>
+            <a href="?page={{ books_list.previous_page_number }}">Previous</a>
+
+       {% endif %}    
+       
+       Page {{ books_list.number }} of {{ books_list.paginator.num_pages }}
+
+       {% if books_list.has_next %}
+       <a href="?page={{ books_list.next_page_number }}">Next</a>
+       <a href="?page={{ books_list.paginator.num_pages }}">&raquo Last</a>
+
+       {% endif %} 
+    </div>
+
+</div>
+
+{% endblock content %}
