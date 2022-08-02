@@ -6,9 +6,9 @@
     {% if Books %}
         {% for book in Books %}
             <div>
-                {{ book.My_book.book_cover.url }}
-                {{ book.My_book.title }}
-                {{ book.My_book.id }}
+                {{ book.Book.book_cover.url }}
+                {{ book.Book.title }}
+                {{ book.Book.id }}
                 {{ book.date_borrowed }}
                 {{ book.return_date }}
             </div>
