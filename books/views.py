@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Book,Borrowed_book
 from django.contrib.auth.models import User, auth
 from .forms import bookform
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.contrib import messages,auth
+import datetime 
 #import pdf stuff
 from django.http import FileResponse
 import io
@@ -52,6 +53,22 @@ def book_student(request, pk):
     context = {'book': book}      
     return render(request,'books/book_student.html',context)
 
+'''def borrow_book(request):
+    if request.method!= 'POST':
+        return HttpResponseBadRequest({'message':'Bad request'})
+
+    user_id=request.user.id
+    book=Book.objects.get(id=request.POST.get('id'))
+    if book.status == 'AV':
+        book.status ='UNAV'
+        book.save()
+    book_id=request.POST.get('id')
+    book=Book.objects.get(id=book_id)
+    user=User.objects.get(id=user_id)  
+
+    borrowed_book =Borrowed_book.objects.create(book=book,user=user,date_borrowed=datetime.now(),fine=0)  
+    borrowed_book.save()'''
+
 #Librarian views
 def Home(request):
     books=Book.objects.all().order_by('Date_added')
@@ -69,8 +86,8 @@ def add_book(request):
         form =bookform(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('books:Home')
-            #return HttpResponseRedirect('/add_book?submitted=True')
+            #return redirect('books:Home')
+            return HttpResponseRedirect('/add_book?submitted=True')
     else:
         form=bookform
         if 'submitted' in request.GET:

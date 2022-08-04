@@ -18,7 +18,7 @@ class Book(models.Model):
         return self.book_title
 
     def delete(self,*args,**kwargs):
-        self.image_url.delete()
+        self.book_cover.delete()
         super().delete(*args,**kwargs)    
 
 

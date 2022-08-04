@@ -4,11 +4,12 @@
 
 <div>
     <center>
-        <h1>Add book to database</h1>
+        <h1>Add book </h1>
     <br/><br/>
     {%if submitted %}
-        Book was added succesfully!!!
-
+        <div class="alert alert-primary" role="alert">
+            Book was added succesfully!!! 
+        </div>  
     {% else %}
         <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
