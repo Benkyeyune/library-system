@@ -5,14 +5,16 @@ from django.contrib.auth.forms import UserCreationForm
 from books.models import User
 
 # Create your views here.
+
+
 def login_user(request):
     if request.method == "POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        user=authenticate(request,username=username,password=password)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
 
-        if user is not None :
-            login(request,user)
+        if user is not None:
+            login(request, user)
             #Redirect to success page
             return redirect('books:Home')    
 
