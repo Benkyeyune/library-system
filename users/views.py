@@ -28,7 +28,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)  
-    messages.success(request,("You were logged out successfully...."))
+    messages.success(request,("You have logged out successfully...."))
     return redirect('books:welcome')      
 
 def register_user(request):
