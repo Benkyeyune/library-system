@@ -26,20 +26,22 @@ def login_user(request):
     else:
         return render(request, 'authenticate/login.html',{})
 
+
 def logout_user(request):
     logout(request)  
     messages.success(request,("You have logged out successfully...."))
-    return redirect('books:welcome')      
+    return redirect('books:welcome')
+
 
 def register_user(request):
     if request.method == "POST":
-        form=UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            username=form.cleaned_data['username']
-            password=form.cleaned_data['password1']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
             messages.success(request,("Account created successfully...."))
             return redirect('books:welcome') 
     else:
-        form=UserCreationForm
+        form = UserCreationForm
     return render(request, 'authenticate/register_user.html',{'form':form})
