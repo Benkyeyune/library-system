@@ -15,18 +15,22 @@ from reportlab.lib.pagesizes import letter
 #import paginator stuff
 from django.core.paginator import Paginator
 
-app_name='books'
+app_name = 'books'
+
 
 def welcome(request):
     return render(request,'books/welcome_page.html')
+
 
 #Student views
 def my_book(request):
     context={}
     return render(request,'books/My_books.html',context) 
 
+
 def payments_student(request):
     return render(request,'books/payments_student.html')
+
 
 def Home_student(request):
     books=Book.objects.all().order_by('Date_added')
@@ -40,10 +44,11 @@ def Home_student(request):
     'pages':pages}
     return render(request,'books/home_student.html',context)
 
+
 def search_books(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        books=Book.objects.filter(book_title__contains=searched)
+        books = Book.objects.filter(book_title__contains=searched)
         return render(request,'books/search_books.html',
         {'searched':searched,
         'books':books})
