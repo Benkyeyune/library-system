@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from books.models import User
+from users.forms import RegisterUserForm
+
 
 # Create your views here.
 def login_user(request):
@@ -13,9 +14,12 @@ def login_user(request):
 
         if user is not None :
             login(request,user)
-            #Redirect to success page
-            return redirect('books:Home')    
-
+            if user.is_staff:
+                #Redirect to success page
+                return redirect('books:Home')
+            else:        
+                #Redirect to success page
+                return redirect('books:Home_student')
         else:
             #return an 'invalid login' error
             messages.info(request,("There was an error Logging in, Try again...."))
@@ -31,7 +35,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        form=UserCreationForm(request.POST)
+        form=RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
             username=form.cleaned_data['username']
@@ -39,5 +43,5 @@ def register_user(request):
             messages.success(request,("Account created successfully...."))
             return redirect('books:welcome') 
     else:
-        form=UserCreationForm
+        form=RegisterUserForm
     return render(request, 'authenticate/register_user.html',{'form':form})

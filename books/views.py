@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Book,Borrowed_book
-from django.contrib.auth.models import User, auth
-from .forms import bookform
-from django.http import HttpResponseBadRequest, HttpResponseRedirect
-from django.contrib import messages,auth
+from django.contrib.auth.models import User
+from .forms import bookform,Issue_book
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 import datetime 
 #import pdf stuff
 from django.http import FileResponse
@@ -34,8 +34,10 @@ def Home_student(request):
     p=Paginator(Book.objects.all(),5)
     page=request.GET.get('page')
     books_list=p.get_page(page)
+    pages="p"*books_list.paginator.num_pages
     context={'books':books,
-    'books_list':books_list}
+    'books_list':books_list,
+    'pages':pages}
     return render(request,'books/home_student.html',context)
 
 def search_books(request):
@@ -53,31 +55,40 @@ def book_student(request, pk):
     context = {'book': book}      
     return render(request,'books/book_student.html',context)
 
-'''def borrow_book(request):
-    if request.method!= 'POST':
-        return HttpResponseBadRequest({'message':'Bad request'})
+def Borrow(request,id):
+    book = Book.objects.get(id=id)
 
+    return render(request,'books/borrow_book.html',{
+        'book': book,
+        'book_id': id,
+        'title': 'Borrow a Book'
+    })
+
+def Borrow_book(request,id):
     user_id=request.user.id
-    book=Book.objects.get(id=request.POST.get('id'))
-    if book.status == 'AV':
-        book.status ='UNAV'
-        book.save()
-    book_id=request.POST.get('id')
-    book=Book.objects.get(id=book_id)
-    user=User.objects.get(id=user_id)  
-
-    borrowed_book =Borrowed_book.objects.create(book=book,user=user,date_borrowed=datetime.now(),fine=0)  
-    borrowed_book.save()'''
+    book=Book.objects.get(id=id)
+    b=Book.objects.all()
+    if b.status =="AVAILABLE":
+        b.status=='UNAVAILABLE'
+        b.save()
+    user=User.objects.get(id=user_id)
+    borrowed_book=Borrowed_book.objects.create(user=user,book=book,fine=0,date_borrowed=datetime.datetime.now())
+    borrowed_book.save()
+    
+    messages.info(request,("book was borrwed successfully...."))
+    return redirect('books:Home_student')
 
 #Librarian views
 def Home(request):
     books=Book.objects.all().order_by('Date_added')
-     #Setup pagination
+    #Setup pagination
     p=Paginator(Book.objects.all(),5)
     page=request.GET.get('page')
     books_list=p.get_page(page)
+    pages="p"*books_list.paginator.num_pages
     context={'books':books,
-    'books_list':books_list}
+    'books_list':books_list,
+    'pages':pages}
     return render(request,'books/home.html',context)
 
 def add_book(request):
@@ -98,13 +109,13 @@ def add_book(request):
     return render(request,'books/add_book.html',context)
 
 def borrwed_books(request):
-    Books=Borrowed_book.objects.filter()
+    Books=Borrowed_book.objects.all()
     context={'Books':Books}
     return render(request,'books/borrowed_books.html',context)
 
 def requested_books(request):
-    My_books=Book.objects.all()
-    context={'My_books':My_books}
+    books=Borrowed_book.objects.all()
+    context={'books':books}
     return render(request,'books/requested_books.html',context)
 
 
@@ -138,6 +149,18 @@ def search_books_librarian(request):
         'books':books})
     else:
         return render(request,'books/search_books_librarian.html')  
+
+def Issue(request,id):
+    borrowed_book = Borrowed_book.objects.get(id=id)
+
+    return render(request,'books/view_requested_book.html',{
+        'book': borrowed_book,
+        'book_id': id,
+    })
+
+def Issue_book(request):
+    #book=Book.objects.get(pk=id)
+    form=Issue_book
 
 #generate a pdf file of booklist
 def book_report(request):

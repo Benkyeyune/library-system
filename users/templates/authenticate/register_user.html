@@ -1,5 +1,9 @@
 {% extends 'main.html'%}
-
+<head>
+    <style>
+        body {background:blue;}
+    </style>
+</head>
 {% block content%}
 {% if form.errors %}
 <p>
@@ -7,7 +11,7 @@
 </p>
 {% endif %}
 <div>
-    <center>
+    <div class="shadow p-4 mb-5 bg-body rounded">
         <h1>Signup</h1>
     <br/><br/>
     
@@ -16,11 +20,11 @@
         {% csrf_token %} 
         {{ form.as_p }}
     <br/>   
-        <button type="submit ">signup</button>
+        <button type="submit "class='btn btn-primary'>signup</button>
         </form>
    
 
-    </center>
+    </div>
 
 
 </div>
