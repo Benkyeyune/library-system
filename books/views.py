@@ -45,7 +45,7 @@ def Home_student(request):
 def search_books(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        books=Book.objects.filter(book_title__contains=searched)
+        books = Book.objects.filter(book_title__contains=searched)
         return render(request,'books/search_books.html',
         {'searched':searched,
         'books':books})
