@@ -80,7 +80,7 @@ def Borrow_book(request,id):
     borrowed_book=Borrowed_book.objects.create(user=user,book=book,fine=0,date_borrowed=datetime.datetime.now())
     borrowed_book.save()
     
-    messages.info(request,("book was borrwed successfully...."))
+    messages.info(request,("book was borrowed successfully...."))
     return redirect('books:Home_student')
 
 #Librarian views
