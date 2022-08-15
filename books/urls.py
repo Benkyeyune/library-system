@@ -8,7 +8,7 @@ urlpatterns = [
      #Librarian urls
     path('home/', views.Home, name="Home"),
     path('add_book/',views.add_book,name='add_book'),
-    path('borrowed_books/',views.borrwed_books,name='borrowed_books'),
+    path('borrowed_books/',views.borrowed_books,name='borrowed_books'),
     path('requested_books/',views.requested_books,name='requested_books'),
     path('update_book/<id>',views.update_book,name='update_book'),
     path('delete_event/<id>',views.delete_book,name='delete_book'),

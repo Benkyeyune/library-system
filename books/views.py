@@ -113,7 +113,7 @@ def add_book(request):
     #messages.info(request,("book was added successfully...."))
     return render(request,'books/add_book.html',context)
 
-def borrwed_books(request):
+def borrowed_books(request):
     Books=Borrowed_book.objects.all()
     context={'Books':Books}
     return render(request,'books/borrowed_books.html',context)
