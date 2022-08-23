@@ -8,7 +8,7 @@
     {{ book.description }}</br>
     {{ book.author }}
 
-    <button class="btn btn-primary" >Borrow</button>
+    <a class="btn btn-primary" href="{% url 'books:Borrow_page' book.id %}" role="button">Borrow</a>
 </div>
 {% endif %}
 {% endblock content%}
